@@ -32,3 +32,12 @@ jobs:
         with:
           push: true
           tags: ghcr.io/${{ github.repository }}
+    
+  workflow-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run the action
+        uses: ./
+        with:
+          path: 'test.txt'
