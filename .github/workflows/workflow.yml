@@ -39,6 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run the action
-        uses: /action.yml
+        uses: jamieeeeeeeeeeeeeeee/actions@main
         with:
           path: 'test.txt'
