@@ -12,12 +12,8 @@ inputs:
     required: true
     default: 'hello.c'
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/jamieeeeeeeeeeeeeeee/actions:latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Search for non-ascii characters
-      runs: test.txt
+runs:
+    using: 'docker'
+    image: ghcr.io/jamieeeeeeeeeeeeeeee/actions:latest
+    args:
+      - test.txt
