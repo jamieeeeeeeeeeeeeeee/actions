@@ -20,4 +20,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Search for non-ascii characters
-      run: ${{ inputs.path }}
+      run: test.txt
