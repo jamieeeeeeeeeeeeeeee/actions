@@ -3,9 +3,8 @@ name: Non Ascii Spotter
 on:
   push:
     branches:
-      push: ["main"]
-      
-      workflow_dispatch:
+      - 'main'
+  workflow_dispatch:
 
 inputs:
   path:
@@ -18,9 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/jamieeeeeeeeeeeeeeee/actions:latest
-
     steps:
     - uses: actions/checkout@v4
-
     - name: Search for non-ascii characters
       run: ${{ inputs.path }}
