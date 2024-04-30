@@ -37,8 +37,8 @@ jobs:
     needs: docker
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Run the action
-        uses: .
+        uses: action.yml
         with:
           path: 'test.txt'
