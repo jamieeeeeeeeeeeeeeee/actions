@@ -16,9 +16,11 @@ inputs:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/jamieeeeeeeeeeeeeeee/actions:latest
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Search for non-ascii characters
-      run: action ${{ inputs.path }}
+      run: ${{ inputs.path }}
