@@ -1,17 +1,27 @@
 FROM ubuntu:20.04
 
-# Copy build script
-COPY build.sh /tmp/build.sh
-RUN chmod +x /tmp/build.sh
+# Set the non-interactive frontend for Debian-based package installations
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Run build script
-RUN /tmp/build.sh
+# Install necessary packages
+RUN apt-get update
+RUN apt-get install -y gcc build-essential --no-install-recommends
 
-# Clean up
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Copy build script source file
+COPY action.c /tmp/action.c
 
-# Check if non-ascii-spotter exists in bin
-RUN test -f /usr/local/bin/non-ascii-spotter
+# Compile the C program
+RUN gcc /tmp/action.c -o /usr/local/bin/non-ascii-spotter
 
-# If it does, set it as the entrypoint
+# Clean up temporary files
+RUN apt-get clean
+RUN rm -rf /tmp/* /var/lib/apt/lists/*
+
+# Check if non-ascii-spotter exists in the expected location
+RUN if [ ! -f /usr/local/bin/non-ascii-spotter ]; then \
+        echo "non-ascii-spotter not found"; \
+        exit 1; \
+    fi
+
+# Set the entrypoint to non-ascii-spotter
 ENTRYPOINT ["/usr/local/bin/non-ascii-spotter"]
