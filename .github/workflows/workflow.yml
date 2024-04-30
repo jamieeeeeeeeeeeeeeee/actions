@@ -39,6 +39,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run the action
-        uses: ./
+        uses: .
         with:
           path: 'test.txt'
